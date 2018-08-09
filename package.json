@@ -1,0 +1,23 @@
+{
+  "name": "LIRI-BOT",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stuttskyle/LIRI-BOT.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stuttskyle/LIRI-BOT/issues"
+  },
+  "homepage": "https://github.com/stuttskyle/LIRI-BOT#readme",
+  "dependencies": {
+    "dotenv": "^6.0.0"
+  }
+}
