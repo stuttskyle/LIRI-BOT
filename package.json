@@ -1,7 +1,7 @@
 {
   "name": "LIRI-BOT",
   "version": "1.0.0",
-  "description": "In this assignment, you will make LIRI. LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.",
+  "description": "This app is a node.js based app, that the user inputs four simple commands and gets back break downs of songs, movies, and twitter info. The basic command line is \"node liri.js command-here* \"user-input\" \".",
   "main": "keys.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
