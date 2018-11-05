@@ -1,13 +1,3 @@
-//Make it so liri.js can take in one of the following commands:
-
-// * `my-tweets`
-
-// * `spotify-this-song`
-
-// * `movie-this`
-
-// * `do-what-it-says`
-
 ////read and rquire dotenv package
 require("dotenv").config();
 
@@ -42,7 +32,7 @@ function songSearch(song){
         let release = data.tracks.items[0].album.release_date;
 
         console.log("Artist" + artist);
-        console.log("Song Name" = songName);
+        // console.log("Song Name" = songName);
         console.log("Album" + album);
         console.log("Release Date" + release);
     });
