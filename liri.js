@@ -15,13 +15,15 @@ require("dotenv").config();
 const keys = require('./keys.js');
 const Spotify = require('node-spotify-api');
 const Twitter = require("twitter");
-const request = require("request");
-const inquirer = require("inquirer");
+const request = require("request"); 
 const fs = require("fs");
 
 //Key initilization
 const spotify = new Spotify(keys.spotify);
 const client = new Twitter(keys.twitter);
+
+let nodeCommand = process.argv[3];
+let userCommand = process.argv[2];
 
 //Spotify Search Function
 function songSearch(song){
@@ -69,3 +71,71 @@ function twitSearch(userName) {
     count = 0;
 };
 
+//IMDB Search
+function movieSearch(movie){
+    if(!movie){
+        var movieName = "Mr. Nobody";
+    } else{
+        movieName = movie;
+    }
+    let queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
+
+    request(queryUrl, function(err, response, body){
+
+        if(!err && response.statusCode === 200){
+            console.log("Movie title: " + JSON.parse(body).Title);
+            console.log("Release date: " + JSON.parse(body).Year);
+            console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
+            if(JSON.parse(body).Ratings[1]){
+                console.log("Rotten Tomatoes rating: " + JSON.parse(body).Ratings[1].Value);
+            }
+            console.log("Produced in " + JSON.parse(body).Country);
+            console.log("Language: " + JSON.parse(body).Language);
+            console.log("Plot: " + JSON.parse(body).Plot);
+            console.log("Actors: " + JSON.parse(body).Actors);
+        } else{
+            console.log(err);
+        }
+    });
+};
+
+// Do What It Says
+doIt = () => {
+    fs.readFile("random.txt", "utf8", (err, data) => {
+        if (err) {
+            console.log(err);
+        }
+        let dataArr = data.split(",");
+        getSpotify(dataArr[1]);
+
+    });
+};
+
+getCommands = (command, nodeCommand) => {
+    switch (command) {
+        case "my-tweets":
+            twitSearch();
+            break;
+
+        case "spotify-this-song":
+            if (nodeCommand === undefined) {
+                nodeCommand = "The Sign, Ace of Base";
+            };
+
+            songSearch(nodeCommand);
+            break;
+
+        case "movie-this":
+            movieSearch();
+            break;
+
+        case "do-what-it-says":
+            doIt();
+            break;
+
+    };
+};
+
+
+
+getCommands(userCommand, nodeCommand);
